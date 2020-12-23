@@ -1,7 +1,7 @@
 import { Body, Controller, Get, HttpCode, Post } from "@nestjs/common";
 import { CreateUserRequest } from "./payload/request/create-user.request";
 import { User } from "./user.entity";
-import { UserService } from "./user-service";
+import { UserService } from "./user.service";
 
 @Controller('user')
 export class UserController {
