@@ -6,17 +6,17 @@ export class CreateUserRequest {
     @IsString({message: '아이디의 형식이 올바르지 않습니다.'})
     @Length(6, 12)
     @ApiPropertyOptional()
-    id: string
+    readonly id: string
 
     @IsNotEmpty({message: '비밀번호는 필수값입니다.'})
     @IsString({message: '비밀번호의 형식이 올바르지 않습니다.'})
     @Length(6, 13)
     @ApiPropertyOptional()
-    password: string
+    readonly password: string
 
     @IsNotEmpty({message: '이름은 필수값입니다.'})
     @IsString({message: '이름의 형식이 올바르지 않습니다.'})
     @Length(2, 6)
     @ApiPropertyOptional()
-    name: string
+    readonly name: string
 }
