@@ -4,7 +4,7 @@ import { ConfigService } from "src/modules/config";
 
 @Injectable()
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
-    constructor(private configService: ConfigService) {}
+    constructor(private readonly configService: ConfigService) {}
 
     createTypeOrmOptions(): TypeOrmModuleOptions {
         return {
