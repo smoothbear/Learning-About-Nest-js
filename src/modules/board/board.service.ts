@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { Board } from "./board.entity";
 import { BoardRepository } from "./board.repository";
 import { BoardRequest } from "./payload/request/board-upload.request";
@@ -13,6 +13,15 @@ export class BoardService {
 
     async boardUpload(request: BoardRequest) {
         const board = this.boardRepository.create();
-        this.boardRepository.save();
+
+        board.title = request.title;
+        //board.author = request.
+        board.content = request.content;
+        
+        try {
+            this.boardRepository.save();
+        } catch {
+            throw new HttpException("게시판 업로드 실패.", HttpStatus.BAD_REQUEST)
+        }
     }
 }
