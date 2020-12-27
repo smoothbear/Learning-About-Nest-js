@@ -1,5 +1,6 @@
-import { Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { BoardService } from "./board.service";
+import { BoardRequest } from "./payload/request/board-upload.request";
 
 @Controller('board')
 export class BoardController {
@@ -11,7 +12,7 @@ export class BoardController {
     }
 
     @Post()
-    uploadBoard() {
-        this.boardService.boardUpload();
+    uploadBoard(@Body() request: BoardRequest) {
+        this.boardService.boardUpload(request);
     }
 }
