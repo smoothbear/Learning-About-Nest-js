@@ -12,6 +12,7 @@ export class BoardService {
     }
 
     async boardUpload(request: BoardRequest) {
+        const board = this.boardRepository.create();
         this.boardRepository.save();
     }
 }

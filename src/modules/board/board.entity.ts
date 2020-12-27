@@ -3,8 +3,6 @@ import { Comment } from './comment.entity';
 
 @Entity('board_tbl')
 export class Board {
-    constructor(title: string, author: string, authorId: number) { this.title = title; this.author = author; this.authorId = authorId }
-
     @PrimaryGeneratedColumn()
     id: number;
 

@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
+import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import { BoardService } from "./board.service";
 import { BoardRequest } from "./payload/request/board-upload.request";
 
@@ -12,6 +13,7 @@ export class BoardController {
     }
 
     @Post()
+    @UseGuards(JwtAuthGuard)
     uploadBoard(@Body() request: BoardRequest) {
         this.boardService.boardUpload(request);
     }
