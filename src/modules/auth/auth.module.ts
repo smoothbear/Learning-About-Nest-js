@@ -8,7 +8,7 @@ import { ConfigModule, ConfigService } from "../config";
             imports: [ConfigModule],
             useFactory: async (configService: ConfigService) => {
                 return {
-                    secret: configService.get('JWT_SECRET')
+                    secret: configService.get('JWT_SECRET'), 
                 }
             },
             inject: [ConfigService]
