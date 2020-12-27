@@ -19,10 +19,7 @@ export class AuthService {
 
             if (user.password === request.password) {
                 return ({
-                    accessToken: this.jwtService.sign(user.id, {
-                        algorithm: 'HS256',    
-                        expiresIn: this.configService.get('JWT_EXPIRED_TIME'),
-                    }),
+                    accessToken: this.jwtService.sign(user.id),
                     expireTime: this.configService.get('JWT_EXPIRED_TIME'),
                 });
             } else {
