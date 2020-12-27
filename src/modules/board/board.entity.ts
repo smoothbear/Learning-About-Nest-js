@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Comment } from './comment.entity';
 
 @Entity('board_tbl')
 export class Board {
@@ -14,6 +15,12 @@ export class Board {
     @Column({nullable: false})
     authorId: number;
 
-    @Column({precision: 6, type: 'timestamp', nullable: false})
-    date: Date;
+    @CreateDateColumn({name: 'created_at'})
+    createdAt!: Date;
+
+    @OneToMany(
+        (type) => Comment,
+        (comment) => comment.board
+    )
+    comments!: Comment[]; 
 }

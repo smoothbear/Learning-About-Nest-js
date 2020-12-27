@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Board } from "./board.entity";
 
 @Entity('comment_tbl')
 export class Comment {
@@ -10,4 +11,10 @@ export class Comment {
 
     @Column({nullable: false})
     content: string;
+
+    @ManyToOne(
+        (type) => Board,
+        (board) => board.comments, { nullable: false, onDelete: 'CASCADE' }
+    )
+    board!: Board;
 }
