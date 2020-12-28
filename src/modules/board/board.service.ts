@@ -7,7 +7,7 @@ import { BoardRequest } from "./payload/request/board-upload.request";
 export class BoardService {
     constructor(private readonly boardRepository: BoardRepository) {}
 
-    async boardList() {
+    async boardList(): Promise<Board[]> {
         return this.boardRepository.find();
     }
 
@@ -15,7 +15,7 @@ export class BoardService {
         const board = this.boardRepository.create();
 
         board.title = request.title;
-        //board.author = request.
+        board.author = //board.author = request.
         board.content = request.content;
         
         try {

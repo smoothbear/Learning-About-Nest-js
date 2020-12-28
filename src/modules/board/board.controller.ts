@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
+import { Board } from "./board.entity";
 import { BoardService } from "./board.service";
 import { BoardRequest } from "./payload/request/board-upload.request";
 
@@ -8,7 +9,7 @@ export class BoardController {
     constructor(private readonly boardService: BoardService) {}
 
     @Get()
-    boardList() {
+    boardList(): Promise<Board[]> {
         return this.boardService.boardList();
     }
 

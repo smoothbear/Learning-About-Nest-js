@@ -1,3 +1,4 @@
+import { JwtPayLoad } from './jwt.payload';
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "../config";
@@ -27,6 +28,20 @@ export class AuthService {
             }
         } catch {
             throw new HttpException('아이디를 찾을 수 없습니다.', HttpStatus.NOT_FOUND);
+        }
+    }
+
+    async validateUser(payload: JwtPayLoad): Promise<any> {
+        try {
+            const user = await this.userRepository.findOneOrFail(payload.id);
+            if (user.id === payload.id) {
+                const result = user;
+                return result;
+            } else {
+                throw new HttpException("인증 오류가 발생하였습니다.", HttpStatus.UNAUTHORIZED);
+            }
+        } catch {
+            throw new HttpException("인증 오류가 발생하였습니다.", HttpStatus.UNAUTHORIZED);
         }
     }
 }
