@@ -19,7 +19,7 @@ export class BoardService {
         board.content = request.content;
         
         try {
-            this.boardRepository.save();
+            this.boardRepository.save(board);
         } catch {
             throw new HttpException("게시판 업로드 실패.", HttpStatus.BAD_REQUEST)
         }
