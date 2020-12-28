@@ -17,6 +17,9 @@ import { UserRepository } from "../user/user.repository";
             }
         }),
     ],
-    providers: [AuthService, ConfigService, UserRepository],
+    providers: [AuthService, {
+        provide: ConfigService,
+        useValue: new ConfigService('.env')
+    }, UserRepository],
 })
 export class AuthModule {}
